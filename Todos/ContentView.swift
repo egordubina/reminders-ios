@@ -10,51 +10,51 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @Query private var reminders: [Reminder]
+    @State private var showAddReminderSheet: Bool = false
+    
     var body: some View {
-        NavigationSplitView {
+        NavigationStack {
             List {
-                ForEach(items) { item in
+                ForEach(reminders) { reminder in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        EditReminder(reminder: reminder)
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        TodoView(todo: reminder)
                     }
                 }
-                .onDelete(perform: deleteItems)
             }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
             .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
-#endif
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button(action: { showAddReminderSheet.toggle() }) {
+                        Label("Add a new reminder", systemImage: "plus")
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
+            .navigationTitle("All reminders")
+        }
+        .sheet(isPresented: $showAddReminderSheet) {
+            NavigationStack {
+                EditReminder(reminder: .emptyReminder)
+                    .navigationTitle("Create a new reminder")
+            }
         }
     }
-
-    private func addItem() {
+    
+    private func createItem(newReminder: Reminder) {
         withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+            modelContext.insert(newReminder)
         }
+        showAddReminderSheet.toggle()
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                modelContext.delete(reminders[index])
             }
         }
     }
@@ -62,5 +62,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Reminder.self, inMemory: true)
 }
