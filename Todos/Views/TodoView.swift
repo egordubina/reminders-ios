@@ -8,20 +8,17 @@
 import SwiftUI
 
 struct TodoView: View {
-    @State var todo: Reminder
+    @State var reminder: Reminder
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: todo.isCompleted ? "checkmark.circle" : "circle").foregroundColor(todo.isCompleted ? .green : .accentColor)
-                Text(todo.reminderName)
-                Spacer()
-            }
-            Text(todo.createdAt, format: Date.FormatStyle(date: .abbreviated, time: .shortened)).font(.caption).padding(.top, 1)
+            TextField("Reminder", text: $reminder.reminder)
+            TextField("Notes", text: $reminder.notes).font(.caption)
+            Text(reminder.createdAt, format: Date.FormatStyle(date: .abbreviated, time: .shortened)).font(.caption).padding(.top, 1)
         }
     }
 }
 
 #Preview {
-    TodoView(todo: .sampleData[0])
-    TodoView(todo: .sampleData[1])
+    TodoView(reminder: .sampleData[0])
+    TodoView(reminder: .sampleData[1])
 }

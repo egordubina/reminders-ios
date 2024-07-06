@@ -11,19 +11,21 @@ import SwiftData
 @Model
 final class Reminder: Identifiable {
     @Attribute(.unique) let id: UUID
-    var reminderName: String
-    var reminderDescription: String
+    var reminder: String
+    var notes: String
     let createdAt: Date
     var isCompleted: Bool
     var priority: ReminderPriority
+    var flag: Bool
     
-    init(id: UUID = UUID(), reminderName: String, reminderDescription: String, createdAt: Date, isCompleted: Bool, priority: ReminderPriority) {
+    init(id: UUID = UUID(), reminderName: String, reminderDescription: String, createdAt: Date, isCompleted: Bool, priority: ReminderPriority, flag: Bool) {
         self.id = id
-        self.reminderName = reminderName
-        self.reminderDescription = reminderDescription
+        self.reminder = reminderName
+        self.notes = reminderDescription
         self.createdAt = createdAt
         self.isCompleted = isCompleted
         self.priority = priority
+        self.flag = flag
     }
 }
 
@@ -37,9 +39,9 @@ extension Reminder {
     }
     
     static var sampleData: [Reminder] = [
-        Reminder(reminderName: "First reminder item", reminderDescription: "", createdAt: Date(), isCompleted: true, priority: .low),
-        Reminder(reminderName: "Second reminder item", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .low),
+        Reminder(reminderName: "First reminder item", reminderDescription: "", createdAt: Date(), isCompleted: true, priority: .low, flag: false),
+        Reminder(reminderName: "Second reminder item", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .low, flag: false),
     ]
     
-    static var emptyReminder: Reminder = Reminder(reminderName: "", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .low)
+    static var emptyReminder: Reminder = Reminder(reminderName: "", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .low, flag: false)
 }

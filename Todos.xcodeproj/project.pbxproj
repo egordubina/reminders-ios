@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		61063C672C38848C00C978D4 /* EditReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61063C662C38848C00C978D4 /* EditReminder.swift */; };
-		61063C692C391CBE00C978D4 /* DetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61063C682C391CBE00C978D4 /* DetailEditView.swift */; };
 		61069BE72C355C8A00D8E161 /* TodosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61069BE62C355C8A00D8E161 /* TodosApp.swift */; };
 		61069BE92C355C8A00D8E161 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61069BE82C355C8A00D8E161 /* ContentView.swift */; };
 		61069BED2C355C8C00D8E161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61069BEC2C355C8C00D8E161 /* Assets.xcassets */; };
@@ -17,7 +16,6 @@
 
 /* Begin PBXFileReference section */
 		61063C662C38848C00C978D4 /* EditReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReminder.swift; sourceTree = "<group>"; };
-		61063C682C391CBE00C978D4 /* DetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditView.swift; sourceTree = "<group>"; };
 		61069BE32C355C8A00D8E161 /* Todos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61069BE62C355C8A00D8E161 /* TodosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosApp.swift; sourceTree = "<group>"; };
 		61069BE82C355C8A00D8E161 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 				61069BEC2C355C8C00D8E161 /* Assets.xcassets */,
 				61069BEE2C355C8C00D8E161 /* Todos.entitlements */,
 				61069BEF2C355C8C00D8E161 /* Preview Content */,
-				61063C682C391CBE00C978D4 /* DetailEditView.swift */,
 			);
 			path = Todos;
 			sourceTree = "<group>";
@@ -174,7 +171,6 @@
 				61069BE92C355C8A00D8E161 /* ContentView.swift in Sources */,
 				61063C672C38848C00C978D4 /* EditReminder.swift in Sources */,
 				61069BE72C355C8A00D8E161 /* TodosApp.swift in Sources */,
-				61063C692C391CBE00C978D4 /* DetailEditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,22 +12,29 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var reminders: [Reminder]
     @State private var showAddReminderSheet: Bool = false
+    @State private var newReminder: Reminder = .emptyReminder
+    @State private var showEditReminderSheet: Bool = false
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(reminders) { reminder in
-                    NavigationLink {
-                        EditReminder(reminder: reminder)
-                    } label: {
-                        TodoView(todo: reminder)
+            List(reminders) { reminder in
+                TodoView(reminder: reminder)
+                    .sheet(isPresented: $showEditReminderSheet) {
+                        NavigationStack {
+                            EditReminder(reminder: reminder)
+                                .navigationTitle("Detail info")
+                                .toolbar {
+                                    ToolbarItem(placement: .cancellationAction) {
+//                                        Button(action: { showEditReminderSheet.toggle() }) {
+//                                            Text("Cancel")
+//                                        }
+                                    }
+                                }
+                        }
                     }
-                }
             }
+            .listStyle(.plain)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
                 ToolbarItem {
                     Button(action: { showAddReminderSheet.toggle() }) {
                         Label("Add a new reminder", systemImage: "plus")
@@ -38,20 +45,32 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showAddReminderSheet) {
             NavigationStack {
-                EditReminder(reminder: .emptyReminder)
+                EditReminder(reminder: newReminder)
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button(action: { showAddReminderSheet.toggle() }) {
+                                Text("Cancel")
+                            }
+                        }
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button(action: { createReminder(reminder: newReminder) }) {
+                                Text("Save")
+                            }.disabled(newReminder.reminder.isEmpty)
+                        }
+                    }
                     .navigationTitle("Create a new reminder")
             }
         }
     }
     
-    private func createItem(newReminder: Reminder) {
+    private func createReminder(reminder: Reminder) {
         withAnimation {
-            modelContext.insert(newReminder)
+            modelContext.insert(reminder)
         }
         showAddReminderSheet.toggle()
     }
     
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteReminder(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
                 modelContext.delete(reminders[index])
