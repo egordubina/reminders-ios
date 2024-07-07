@@ -35,7 +35,7 @@
 		61069C032C35661200D8E161 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				TodoView.swift,
+				ReminderRowItem.swift,
 			);
 			target = 61069BE22C355C8A00D8E161 /* Todos */;
 		};

@@ -14,10 +14,15 @@ struct EditReminder: View {
             Form {
                 TextField("Name", text: $reminder.reminder)
                 TextField("Description", text: $reminder.notes, axis: .vertical).lineLimit(5...10)
-                Toggle(isOn: $reminder.flag) { Text("Flag") }
+                Toggle(isOn: $reminder.flag) {
+                    HStack {
+                        Image(systemName: reminder.flag ? "flag.fill" : "flag").foregroundColor(.orange).bold()
+                        Text("Flag")
+                    }
+                }
                 Picker("Priority", selection: $reminder.priority) {
                     ForEach(Reminder.ReminderPriority.allCases, id: \.self) {
-                        Text($0.rawValue).tag($0)
+                        Text($0.rawValue)
                     }
                 }
             }

@@ -39,8 +39,9 @@ extension Reminder {
     }
     
     static var sampleData: [Reminder] = [
-        Reminder(reminderName: "First reminder item", reminderDescription: "", createdAt: Date(), isCompleted: true, priority: .low, flag: false),
-        Reminder(reminderName: "Second reminder item", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .low, flag: false),
+        Reminder(reminderName: "First reminder item", reminderDescription: "", createdAt: Date(), isCompleted: true, priority: .low, flag: true),
+        Reminder(reminderName: "Second reminder item", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .medium, flag: false),
+        Reminder(reminderName: "Third reminder item", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .high, flag: true),
     ]
     
     static var emptyReminder: Reminder = Reminder(reminderName: "", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .low, flag: false)

@@ -18,20 +18,12 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List(reminders) { reminder in
-                TodoView(reminder: reminder)
-                    .sheet(isPresented: $showEditReminderSheet) {
-                        NavigationStack {
-                            EditReminder(reminder: reminder)
-                                .navigationTitle("Detail info")
-                                .toolbar {
-                                    ToolbarItem(placement: .cancellationAction) {
-//                                        Button(action: { showEditReminderSheet.toggle() }) {
-//                                            Text("Cancel")
-//                                        }
-                                    }
-                                }
-                        }
-                    }
+                NavigationLink {
+                    EditReminder(reminder: reminder)
+                        .navigationTitle("Detail info")
+                } label: {
+                    ReminderRowItem(reminder: reminder)
+                }
             }
             .listStyle(.plain)
             .toolbar {
