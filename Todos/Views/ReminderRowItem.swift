@@ -17,7 +17,7 @@ struct ReminderRowItem: View {
                         .foregroundColor(reminder.priority == .medium ? .orange : .red)
                         .bold()
                 }
-                Text(reminder.reminder)
+                Text(reminder.reminder).bold(reminder.flag && reminder.priority == .high)
                 Spacer()
                 if reminder.flag {
                     Image(systemName: "flag.fill").foregroundColor(.orange).bold()
@@ -26,7 +26,7 @@ struct ReminderRowItem: View {
             if !reminder.notes.isEmpty {
                 Text(reminder.notes).font(.caption)
             }
-            Text(reminder.createdAt, format: Date.FormatStyle(date: .abbreviated, time: .shortened))
+            Text(reminder.notification, format: Date.FormatStyle(date: .abbreviated, time: .shortened))
                 .font(.caption).padding(.top, 1)
         }
     }

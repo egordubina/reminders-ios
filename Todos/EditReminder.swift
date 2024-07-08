@@ -25,6 +25,11 @@ struct EditReminder: View {
                         Text($0.rawValue)
                     }
                 }
+                DatePicker(
+                    "Notification",
+                    selection: $reminder.notification,
+                    displayedComponents: [.date, .hourAndMinute]
+                )
             }
         }
     }

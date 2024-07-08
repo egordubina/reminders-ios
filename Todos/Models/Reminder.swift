@@ -17,8 +17,9 @@ final class Reminder: Identifiable {
     var isCompleted: Bool
     var priority: ReminderPriority
     var flag: Bool
+    var notification: Date
     
-    init(id: UUID = UUID(), reminderName: String, reminderDescription: String, createdAt: Date, isCompleted: Bool, priority: ReminderPriority, flag: Bool) {
+    init(id: UUID = UUID(), reminderName: String, reminderDescription: String, createdAt: Date, isCompleted: Bool, priority: ReminderPriority, flag: Bool, notification: Date) {
         self.id = id
         self.reminder = reminderName
         self.notes = reminderDescription
@@ -26,6 +27,7 @@ final class Reminder: Identifiable {
         self.isCompleted = isCompleted
         self.priority = priority
         self.flag = flag
+        self.notification = notification
     }
 }
 
@@ -39,10 +41,10 @@ extension Reminder {
     }
     
     static var sampleData: [Reminder] = [
-        Reminder(reminderName: "First reminder item", reminderDescription: "", createdAt: Date(), isCompleted: true, priority: .low, flag: true),
-        Reminder(reminderName: "Second reminder item", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .medium, flag: false),
-        Reminder(reminderName: "Third reminder item", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .high, flag: true),
+        Reminder(reminderName: "First reminder item", reminderDescription: "", createdAt: Date(), isCompleted: true, priority: .low, flag: true, notification: Date()),
+        Reminder(reminderName: "Second reminder item", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .medium, flag: false, notification: Date()),
+        Reminder(reminderName: "Third reminder item", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .high, flag: true, notification: Date()),
     ]
     
-    static var emptyReminder: Reminder = Reminder(reminderName: "", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .low, flag: false)
+    static var emptyReminder: Reminder = Reminder(reminderName: "", reminderDescription: "", createdAt: Date(), isCompleted: false, priority: .low, flag: false, notification: Date())
 }
