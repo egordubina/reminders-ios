@@ -25,7 +25,7 @@ struct TodosApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RemindersView()
         }
         .modelContainer(sharedModelContainer)
     }
